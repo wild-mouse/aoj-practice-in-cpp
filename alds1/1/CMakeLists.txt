@@ -1,1 +1,2 @@
-add_executable(alds1_1 insertion_sort.cpp)
+add_executable(alds1_1_a insertion_sort.cpp)
+add_executable(alds1_1_b greatest_common_divisor.cpp)
