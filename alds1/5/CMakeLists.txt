@@ -1,0 +1,1 @@
+add_executable(alds1_5_a exhaustive_search.cpp)
