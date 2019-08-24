@@ -1,0 +1,1 @@
+add_executable(alds1_4_a linear_search.cpp)
