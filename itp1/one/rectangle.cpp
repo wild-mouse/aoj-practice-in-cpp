@@ -2,12 +2,9 @@
 
 using namespace std;
 
-int main() { 
+int main() {
     int a, b;
     cin >> a >> b;
-    // cout << a << b;
-    int area = a * b;
-    int l = a * 2 + b * 2;
-    cout << area << " " << l << endl;
+    cout << a * b << " " << (a + b) * 2 << endl;
     return 0;
 }
