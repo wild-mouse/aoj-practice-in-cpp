@@ -1,0 +1,4 @@
+add_executable(itp1_3_a print_many_hello_world)
+add_executable(itp1_3_b print_test_cases)
+add_executable(itp1_3_c swapping_two_numbers)
+add_executable(itp1_3_d how_many_divisors)
