@@ -6,3 +6,4 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(aoj_practice_in_cpp main.cpp)
 
 add_subdirectory(alds1)
+add_subdirectory(itp1)
