@@ -1,0 +1,1 @@
+add_executable(alds1_10_a fibonacci_number)
