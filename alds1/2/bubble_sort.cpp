@@ -1,41 +1,43 @@
-#include <iostream>
-#include <vector>
+#include <cstdio>
 
-using namespace std;
+void printCurrent(int a[], int *n) {
+    for (int i = 0; i < *n; i++) {
+        printf("%d", a[i]);
+        if (i != *n - 1) {
+            printf(" ");
+        }
+    }
+    printf("\n");
 
-pair<vector<int>, int> bubbleSort(vector<int> a) {
-    bool isSorted = false;
+    return;
+}
+
+int bubbleSort(int a[], int *n) {
     int c = 0;
-
-    while (!isSorted) {
-        isSorted = true;
-        for (int i = a.size() - 1; i >= 1; i--) {
-            if (a[i] < a[i - 1] ) {
-                swap(a[i], a[i - 1]);
-                isSorted = false;
+    for (int i = *n - 1; i > 0; i--) {
+        for (int j = 0; j < i; j++) {
+            if (a[j] > a[j + 1]) {
+                int tmp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = tmp;
                 c++;
             }
         }
     }
 
-    return pair<vector<int>, int>(a, c);
+    printCurrent(a, n);
+    return c;
 }
 
 int main() {
-   int n;
-   cin >> n;
-   vector<int> a = vector<int>(n);
-   for (int i = 0; i < n; i++) {
-       cin >> a[i];
-   }
-   pair<vector<int>, int> sorted_count = bubbleSort(a);
-   for(int i = 0; i < a.size(); i++) {
-       if (i != 0) {
-           cout << " ";
-       }
-       cout << sorted_count.first[i];
-   }
-   cout << endl << sorted_count.second << endl;
+    int n;
+    scanf("%d", &n);
+    int a[n];
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+    int c = bubbleSort(a, &n);
+    printf("%d\n", c);
 
-   return 0;
+    return 0;
 }

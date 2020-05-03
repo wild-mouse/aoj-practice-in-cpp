@@ -1,40 +1,48 @@
-#include <iostream>
-#include <vector>
+#include <cstdio>
 
-using namespace std;
+void printCurrent(int a[], int *n) {
+    for (int i = 0; i < *n; i++) {
+        printf("%d", a[i]);
+        if (i != *n - 1) {
+            printf(" ");
+        }
+    }
+    printf("\n");
 
-int selection_sort(vector<int>& a) {
+    return;
+}
+
+int selectionSort(int a[], int *n) {
     int c = 0;
-    for (int i = 0; i < a.size(); i++) {
-        int minJ = i;
-        for (int j = i + 1; j < a.size(); j++) {
-            if (a[j] < a[minJ]) {
-                minJ = j;
+    for (int i = 0; i < *n; i++) {
+        int minj = i;
+        for (int j = i + 1; j < *n; j++){
+            if (a[minj] > a[j]) {
+                minj = j;
             }
         }
-        if (minJ != i) {
-            swap(a[i], a[minJ]);
+        if (i != minj) {
+            int tmp = a[i];
+            a[i] = a[minj];
+            a[minj] = tmp;
             c++;
         }
     }
+    printCurrent(a, n);
+
     return c;
 }
 
 int main() {
     int n;
-    cin >> n;
-    vector<int> a = vector<int>(n);
+    scanf("%d", &n);
+    int a[n];
     for (int i = 0; i < n; i++) {
-        cin >> a[i];
+        scanf("%d", &a[i]);
     }
-    int count = selection_sort(a);
-    for (int i = 0; i < a.size(); i++) {
-        if (i != 0) {
-            cout << " ";
-        }
-        cout << a[i];
-    }
-    cout << endl << count << endl;
+
+    int c = selectionSort(a, &n);
+    printf("%d\n", c);
 
     return 0;
 }
