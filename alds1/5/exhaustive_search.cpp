@@ -1,43 +1,34 @@
-#include <iostream>
-#include <vector>
-
+#include <cstdio>
 using namespace std;
 
-typedef vector<int> V;
-
-bool combination(V &a, int t, int i, int c) {
-    if (c > t) {
-        return false;
-    }
-    if (c == t) {
+bool solve(int n, int a[], int i, int m) {
+    if (m == 0) {
         return true;
     }
-    if (a.size() == i) {
+    if (i >= n) {
         return false;
     }
-    return combination(a, t, i + 1, c + a[i])
-           || combination(a, t, i + 1, c);
-}
-
-bool hasCombination(V &a, int t) {
-    return combination(a, t, 0, 0);
+    return solve(n, a, i + 1, m - a[i]) || solve(n, a, i + 1, m);
 }
 
 int main() {
-    int n, q;
-    cin >> n;
-    V a = V(n);
+    int n;
+    scanf("%d", &n);
+    int a[n];
     for (int i = 0; i < n; i++) {
-        cin >> a[i];
+        scanf("%d", &a[i]);
     }
-    cin >> q;
+    int q;
+    scanf("%d", &q);
+    int m;
     for (int i = 0; i < q; i++) {
-        int m;
-        cin >> m;
-        if (hasCombination(a, m)) {
-            cout << "yes" << "\n";
+        scanf("%d", &m);
+        if (solve(n, a, 0, m)) {
+            printf("yes\n");
         } else {
-            cout << "no" << "\n";
+            printf("no\n");
         }
     }
+
+    return 0;
 }
