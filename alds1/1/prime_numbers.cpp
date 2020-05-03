@@ -1,17 +1,16 @@
-#include <iostream>
-#include <cmath>
+#include <cstdio>
+#include <math.h>
 
-using namespace std;
-
-bool isPrime(int a) {
-    if (a == 2) {
+bool isPrime(int *a) {
+    if (*a <= 2) {
         return true;
     }
-    if (a % 2 == 0) {
+    if (*a % 2 == 0) {
         return false;
     }
-    for (int i = 3; i <= (int)sqrt(a); i = i + 2) {
-        if (a % i == 0) {
+    int b = sqrt(*a);
+    for (int i = 3; i <= b; i += 2) {
+        if (*a % i == 0) {
             return false;
         }
     }
@@ -20,16 +19,16 @@ bool isPrime(int a) {
 
 int main() {
     int n;
-    cin >> n;
+    scanf("%d", &n);
+    int a;
     int c = 0;
-    while(n--) {
-        int a;
-        cin >> a;
-        if (isPrime(a)) {
+    for (int i = 0;i < n; i++) {
+        scanf("%d", &a);
+        if (isPrime(&a)) {
             c++;
         }
     }
-    cout << c << endl;
+    printf("%d\n", c);
 
     return 0;
 }

@@ -1,19 +1,24 @@
-#include <iostream>
+#include <cstdio>
 
 using namespace std;
 
-int GCD(int a, int b) {
-    if (b == 0) {
-        return a;
+int getGCD(int *x, int *y) {
+    int a = *x < *y ? *y : *x;
+    int b = *x < *y ? *x : *y;
+    for (;;) {
+        if (b == 0) {
+            return a;
+        }
+        int c = a %b;
+        a = b;
+        b = c;
     }
-    return GCD(b, a % b);
 }
 
 int main() {
-    int a, b;
-    cin >> a >> b;
-    int gcd = GCD(a, b);
-    cout << gcd << endl;
+    int x, y;
+    scanf("%d %d", &x, &y);
+    printf("%d\n", getGCD(&x, &y));
 
     return 0;
 }

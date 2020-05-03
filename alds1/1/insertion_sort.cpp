@@ -1,41 +1,39 @@
-#include <iostream>
-#include <vector>
+#include<cstdio>
 
-using namespace std;
-
-void printCurrent(vector<int> a) {
-    for (int i = 0; i < a.size(); i++) {
-        if (i != 0) {
-            cout << " ";
+void printCurrent(int *a, const int *n) {
+    for (int i = 0; i < *n; i++) {
+        printf("%d", a[i]);
+        if (i != *n - 1) {
+            printf(" ");
         }
-        cout << a[i];
     }
-    cout << endl;
+    printf("\n");
 }
 
-vector<int> insertionSort(vector<int> a) {
-    for (int i = 1; i < a.size(); i++) {
-        int v = a[i];
+void insertionSort(int *a, const int *n) {
+    for (int i = 1; i < *n; i++) {
+        int value = a[i];
         int j = i - 1;
-        while (j >=0 && a[j] > v) {
+        for (;; j--) {
+            if (a[j] <= value) {
+                break;
+            }
             a[j + 1] = a[j];
-            j--;
         }
-        a[j + 1] = v;
-        printCurrent(a);
+        a[j + 1] = value;
+        printCurrent(a, n);
     }
-    return a;
 }
 
 int main() {
     int n;
-    cin >> n;
-    vector<int> a = vector<int>(n);
+    scanf("%d", &n);
+    int a[n];
     for (int i = 0; i < n; i++) {
-        cin >> a[i];
+        scanf("%d", &a[i]);
     }
-    printCurrent(a);
-    insertionSort(a);
+    printCurrent(a, &n);
+    insertionSort(a, &n);
 
     return 0;
 }
