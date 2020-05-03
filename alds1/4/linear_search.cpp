@@ -1,29 +1,31 @@
-#include <iostream>
-#include <vector>
+#include <cstdio>
 
-using namespace std;
-
-typedef vector<int> V;
+bool linearSearch(int n, int s[], int t) {
+    for (int i = 0; i < n; i++) {
+        if (s[i] == t) {
+            return true;
+        }
+    }
+    return false;
+}
 
 int main() {
-    int n;
-    cin >> n;
-    V v = V(n);
+    int n, q;
+    scanf("%d", &n);
+    int s[n];
     for (int i = 0; i < n; i++) {
-        cin >> v[i];
+        scanf("%d", &s[i]);
     }
-    int q;
-    cin >> q;
+    scanf("%d", &q);
     int c = 0;
     for (int i = 0; i < q; i++) {
         int t;
-        cin >> t;
-        for (int j : v) {
-            if (t == j) {
-                c++;
-                break;
-            }
+        scanf("%d", &t);
+        if (linearSearch(n, s, t)) {
+            c++;
         }
     }
-    cout << c << "\n";
+    printf("%d\n", c);
+
+    return 0;
 }
