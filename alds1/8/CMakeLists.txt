@@ -1,0 +1,1 @@
+add_executable(alds1_8_a binary_search_tree_i)
