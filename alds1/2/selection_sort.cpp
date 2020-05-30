@@ -1,48 +1,46 @@
-#include <cstdio>
+#include <iostream>
 
-void printCurrent(int a[], int *n) {
-    for (int i = 0; i < *n; i++) {
-        printf("%d", a[i]);
-        if (i != *n - 1) {
-            printf(" ");
+using namespace std;
+
+void printCurrent(int a[], int n) {
+    for (int i = 0; i < n; i++) {
+        if (i != 0) {
+            cout << " ";
         }
+        cout << a[i];
     }
-    printf("\n");
-
-    return;
+    cout << endl;
 }
 
-int selectionSort(int a[], int *n) {
+int selectionSort(int a[], int n) {
     int c = 0;
-    for (int i = 0; i < *n; i++) {
+    for (int i = 0; i < n - 1; i++) {
         int minj = i;
-        for (int j = i + 1; j < *n; j++){
+        for (int j = i + 1; j < n; j++) {
             if (a[minj] > a[j]) {
                 minj = j;
             }
         }
-        if (i != minj) {
-            int tmp = a[i];
-            a[i] = a[minj];
-            a[minj] = tmp;
+        if (minj != i) {
+            int tmp = a[minj];
+            a[minj] = a[i];
+            a[i] = tmp;
             c++;
         }
     }
     printCurrent(a, n);
-
     return c;
 }
 
 int main() {
     int n;
-    scanf("%d", &n);
+    cin >> n;
     int a[n];
     for (int i = 0; i < n; i++) {
-        scanf("%d", &a[i]);
+        cin >> a[i];
     }
-
-    int c = selectionSort(a, &n);
-    printf("%d\n", c);
+    int c = selectionSort(a, n);
+    cout << c << endl;
 
     return 0;
 }

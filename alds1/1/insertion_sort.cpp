@@ -1,39 +1,39 @@
-#include<cstdio>
+#include <iostream>
 
-void printCurrent(int *a, const int *n) {
-    for (int i = 0; i < *n; i++) {
-        printf("%d", a[i]);
-        if (i != *n - 1) {
-            printf(" ");
+using namespace std;
+
+void printCurrent(int a[], int n) {
+    for (int i = 0; i < n; i++) {
+        if (i != 0) {
+            cout << " ";
         }
+        cout << a[i];
     }
-    printf("\n");
+    cout << endl;
 }
 
-void insertionSort(int *a, const int *n) {
-    for (int i = 1; i < *n; i++) {
-        int value = a[i];
-        int j = i - 1;
-        for (;; j--) {
-            if (a[j] <= value) {
-                break;
-            }
-            a[j + 1] = a[j];
+void insertionSort(int a[], int n) {
+    for (int i = 1; i < n; i++) {
+        int v = a[i];
+        int j = i;
+        while (v < a[j - 1]) {
+            a[j] = a[j - 1];
+            j--;
         }
-        a[j + 1] = value;
+        a[j] = v;
         printCurrent(a, n);
     }
 }
 
 int main() {
     int n;
-    scanf("%d", &n);
+    cin >> n;
     int a[n];
     for (int i = 0; i < n; i++) {
-        scanf("%d", &a[i]);
+        cin >> a[i];
     }
-    printCurrent(a, &n);
-    insertionSort(a, &n);
+    printCurrent(a, n);
+    insertionSort(a, n);
 
     return 0;
 }

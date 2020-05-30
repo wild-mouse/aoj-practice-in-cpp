@@ -4,58 +4,53 @@
 
 using namespace std;
 
-class Stack {
-public:
-    void push(string s) {
-        v.push_back(s);
+struct Stack {
+    vector<int> vc;
+
+    void push(int s) {
+        vc.push_back(s);
     }
 
-    string pop() {
-        if (is_empty()) {
-            cerr << "Stack is empty.";
-        }
-        string s = v[v.size() - 1];
-        v.pop_back();
-        return s;
+    int pop() {
+        int ss = vc.back();
+        vc.pop_back();
+        return ss;
     }
 
-    bool is_empty() {
-        return v.empty();
+    bool isEmpty() {
+        return vc.empty();
     }
-
-private:
-    vector<string> v = vector<string>();
-
 };
 
 int main() {
-    cin.tie(0);
-    ios::sync_with_stdio(false);
+    Stack st;
 
-    string line, s, t;
-    Stack st = Stack();
-    getline(cin, line);
-    stringstream x(line);
-    while (getline(x, s, ' ')) {
+    string s, t;
+    getline(cin, t);
+    stringstream ss(t);
+
+    while (getline(ss, s, ' ')) {
+        if (s == "\n") {
+            break;
+        }
         if (s == "+") {
-            int n2 = stoi(st.pop());
-            int n1 = stoi(st.pop());
-            string ss = to_string(n1 + n2);
-            st.push(ss);
+            int v1 = st.pop();
+            int v2 = st.pop();
+            st.push(v2 + v1);
         } else if (s == "-") {
-            int n2 = stoi(st.pop());
-            int n1 = stoi(st.pop());
-            string ss = to_string(n1 - n2);
-            st.push(ss);
+            int v1 = st.pop();
+            int v2 = st.pop();
+            st.push(v2 - v1);
         } else if (s == "*") {
-            int n2 = stoi(st.pop());
-            int n1 = stoi(st.pop());
-            string ss = to_string(n1 * n2);
-            st.push(ss);
+            int v1 = st.pop();
+            int v2 = st.pop();
+            st.push(v2 * v1);
         } else {
-            st.push(s);
+            st.push(stoi(s));
         }
     }
-    cout << st.pop() << "\n";
-}
 
+    cout << st.pop() << endl;
+
+    return 0;
+}
